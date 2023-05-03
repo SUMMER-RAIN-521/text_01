@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DatabaseToolSources">
+    <data-source name="localhost" uuid="d454ae3e-d5da-446c-aa01-9c98a5d8af5d" type="SQLITE">
+      <base-info connect-type="DB_DEFAULT" />
+      <user-name />
+      <url>jdbc:sqlite:/home/xiayuxuan/Desktop/test_01/bookmanager/db.sqlite3</url>
+      <remarks />
+      <driver-info id="sqlite.xerial" />
+      <ssh-properties enabled="false" />
+      <jdbc-additional-properties>
+        <property name="enable_load_extension" value="true" />
+      </jdbc-additional-properties>
+      <ssl-config enabled="false">
+        <uuid />
+        <caFile />
+        <clientCertificateFile />
+        <clientKeyFile />
+        <sslMode>REQUIRE</sslMode>
+      </ssl-config>
+    </data-source>
+  </component>
+</project>

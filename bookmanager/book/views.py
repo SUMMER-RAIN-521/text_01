@@ -16,7 +16,15 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('hello!')
+    # request, 请求 template_name, 模板名称
+    # context = None, content_type = None,
+    # status = None, using = None
+
+    # 模拟数据查询
+    context = {
+        'name': '马上双11,点击有惊醒！'
+    }
+    return render(request, 'book/index.html', context=context)
 
 
 

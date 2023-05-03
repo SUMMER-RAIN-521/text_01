@@ -16,7 +16,7 @@ import book.apps
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+# BASE_DIR = /home/xiayuxuan/Desktop/test_01/bookmanager
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^9n4*c0ghsk(ume5w3d54ksx5ut(nue$!idt01y(v*j^$*+#h0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# 调试模式,上线后该false
 DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.88.130', '127.0.0.1']

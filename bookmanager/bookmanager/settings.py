@@ -123,3 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# 告知系统我要的图片位置
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]

@@ -15,7 +15,10 @@ char(M) M就是选项
 
 class BookInfo(models.Model):
     name = models.CharField(max_length=10)
+    # 重写str方法
 
+    def __str__(self):
+        return self.name
 
 class PeopleInfo(models.Model):
     name = models.CharField(max_length=10)

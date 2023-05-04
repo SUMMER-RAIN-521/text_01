@@ -16,6 +16,7 @@ from django.db import models
 
 
 class BookInfo(models.Model):
+    # id自动添加
     name = models.CharField(max_length=10, unique=True)
     pub_data = models.DateField(True)
     readcount = models.IntegerField(default=0)
@@ -27,5 +28,23 @@ class BookInfo(models.Model):
         verbose_name = '书籍管理'  # admin站点的使用
 
 
+class PeopleInfo(models.Model):
+    # 定义一个有序字典
+    GENDER_CHOICE = (
+        (1, 'male'),
+        (2, 'female')
+    )
+    name = models.CharField(max_length=10, unique=True)
+    gender = models.SmallIntegerField(choices=GENDER_CHOICE, default=1)
+    description = models.CharField(max_length=100, null=True)
+    is_delete = models.BooleanField(default=False)
+    # 外键
+    # SET_NULL 只在允许为空是使用
+    # 抛出异常，不删除 PROTECT
+    # 联级删除 CASCADE
 
+    book = models.ForeignKey(BookInfo, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'peopleinfo'
 

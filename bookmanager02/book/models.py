@@ -23,6 +23,9 @@ class BookInfo(models.Model):
     commentcount = models.IntegerField(default=0)
     is_delete = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'bookinfo'  # 修改表的名字
         verbose_name = '书籍管理'  # admin站点的使用
@@ -44,6 +47,9 @@ class PeopleInfo(models.Model):
     # 联级删除 CASCADE
 
     book = models.ForeignKey(BookInfo, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = 'peopleinfo'

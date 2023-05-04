@@ -81,7 +81,7 @@ DATABASES = {
         'PORT': 3306,
         'USER': 'root',
         'PASSWORD': '123456',
-        'NAME': 'bookmanager',
+        'NAME': 'Django_01',
     }
 }
 

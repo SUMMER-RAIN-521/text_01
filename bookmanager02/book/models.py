@@ -38,7 +38,7 @@ class PeopleInfo(models.Model):
     gender = models.SmallIntegerField(choices=GENDER_CHOICE, default=1)
     description = models.CharField(max_length=100, null=True)
     is_delete = models.BooleanField(default=False)
-    # 外键
+    # 外键 关联的_id自动生成
     # SET_NULL 只在允许为空是使用
     # 抛出异常，不删除 PROTECT
     # 联级删除 CASCADE

@@ -72,10 +72,51 @@ BookInfo.objects.count()
 # 模型类名.objects.filter(属性名__运算符=值)
 # 模型类名.objects.exclude(属性名__运算符=值)
 # 模型类名.objects.get(属性名__运算符=值) 简写：（属性名=值）
+# 查询编号为1的图书
 BookInfo.objects.get(id__exact=1)
 BookInfo.objects.get(id=1)
 BookInfo.objects.filter(id=1)
 BookInfo.objects.get(pk=1)
+# 查询书名包含'湖'的图书
+BookInfo.objects.filter(name__contains='湖')
+# 查询书名以'部'结尾的图书
+BookInfo.objects.filter(name__endswith='部')
+# 查询书名为空的图书
+BookInfo.objects.filter(name__isnull=True)
+# 查询编号为1或3或5的图书
+BookInfo.objects.filter(id__in=[1, 3, 7])
+# 查询编号大于3的图书 大于gt 大于等于gte 小于lt 小于等于lte
+BookInfo.objects.filter(id__gt=3)
+# 查询编号不等于3的图书
+BookInfo.objects.exclude(id=3)
+BookInfo.objects.filter(~Q(id=3))
+# 查询1980年发表的图书
+BookInfo.objects.filter(pub_data__year=1980)
+# 查询1990年1月1日后发表的图书
+BookInfo.objects.filter(pub_data__gt='1990-1-1')
+
+# 使用两个属性比较 模式类名.objects.filter(属性名__运算符=F('第二个属性名'))
+# 查询阅读量大于等于评论量的图书
+from django.db.models import F
+BookInfo.objects.filter(readcount__gte=F('commentcount'))
+
+# 并且查询
+# 查询阅读量大于20,并且编号小于3的图书
+BookInfo.objects.filter(readcount__gt=20).filter(id__lt=3)
+
+BookInfo.objects.filter(readcount__gt=20, id__lt=3)
+
+# 或查询
+# 查询阅读量大于20,或者编号小于3的图书
+# 或者语法: 模型类名.objects.filter(Q(属性名__运算符=值) | Q(属性名__运算符=值))
+# 并且语法： 模型类名.objects.filter(Q(属性名__运算符=值) & Q(属性名__运算符=值))
+# not 非 语法：模型类名.objects.filter(~Q(属性名__运算符=值))
+
+from django.db.models import Q
+BookInfo.objects.filter(Q(readcount__gt=20) | Q(id__lt=3))
+
+
+
 
 
 

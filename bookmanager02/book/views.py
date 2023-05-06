@@ -11,7 +11,7 @@ def index(request):
 
 
 # 增加数据
-from book.models import BookInfo
+from book.models import BookInfo, PeopleInfo
 # 方法一
 book = BookInfo(
     name='Django',
@@ -114,6 +114,40 @@ BookInfo.objects.filter(readcount__gt=20, id__lt=3)
 
 from django.db.models import Q
 BookInfo.objects.filter(Q(readcount__gt=20) | Q(id__lt=3))
+
+
+# 聚合函数
+from django.db.models import Sum, Max, Min, Avg, Count
+# 模型类名.objects.aggregate(聚合函数('字段名'))
+BookInfo.objects.aggregate(Sum('readcount'))
+
+# 排序
+BookInfo.objects.all().order_by('-readcount')
+
+# 多表关联查询
+
+# 查询书籍为1的所有人物信息
+book = BookInfo.objects.get(id=1)
+book.peopleinfo_set.all()
+# 查询人物为1的书籍信息
+person = PeopleInfo.objects.get(id=1)
+person.book
+
+
+# 关联过滤查询
+# 模型类名.objects.filter(关联模型类名小写__字段名__运算符=值)
+# 查询图书，要求图书人物为"郭靖"
+BookInfo.objects.filter(peopleinfo__name__exact='郭靖')
+
+# 查询图书，要求图书中人物的描述包含"八"
+BookInfo.objects.filter(peopleinfo__description__contains='八')
+
+# 查询图书阅读量大于30的所有人物
+PeopleInfo.objects.filter(book__readcount__gt=30)
+
+
+
+
 
 
 

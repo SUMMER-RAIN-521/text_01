@@ -15,14 +15,14 @@ def create_book(request):
     return HttpResponse('create')
 
 
-def shop(request, city_id, shop_id):
+def shop(request, city_id, mobile):
 
     query_params = request.GET
     # print(query_params)
     oder = query_params.getlist('key')
     print(oder)
 
-    print(city_id, shop_id)
+    print(city_id, mobile)
     return HttpResponse('起火啦！')
 
 

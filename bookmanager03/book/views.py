@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from book.models import BookInfo
 
@@ -52,8 +52,42 @@ def json(request):
 def method(request):
 
     print(request.method)
-    return  HttpResponse('method')
+    return HttpResponse('method')
 
+
+from django.http import JsonResponse
+
+
+def res(request):
+    # HTTP status code must be an integer from 100 to 599.
+    # response = HttpResponse('res')
+    # response['name']='xiayuxuan'
+
+    # json-->dict
+    # dict-->json
+    info = {
+        "name": "itcast",
+        "address": "shunyi"
+    }
+    girl_firends=[
+        {
+            "name": "kunkun",
+            "address": "loudi"
+        },
+        {
+            "name": "siri",
+            "address": "changsha"
+        }
+    ]
+    # data 返回响应数据 一般是字典类型
+    """
+    safe =True 表示的data是字典数据
+    JsonResponse 可以把字典转换为json
+    """
+    # response = JsonResponse(data=girl_firends, safe=False)
+    # return response
+    # 重定向
+    return redirect("http://www.baidu.com")
 
 
 

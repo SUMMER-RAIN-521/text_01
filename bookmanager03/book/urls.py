@@ -1,6 +1,6 @@
 from django.urls import path
 
-from book.views import create_book, shop, register, json, method
+from book.views import create_book, shop, register, json, method, res
 from django.urls import converters
 from django.urls.converters import register_converter
 
@@ -31,5 +31,6 @@ urlpatterns = [
     path('<int:city_id>/<phone:mobile>', shop),
     path('register/', register),
     path('json/', json),
-    path('method/', method)
+    path('method/', method),
+    path('res/', res)
 ]

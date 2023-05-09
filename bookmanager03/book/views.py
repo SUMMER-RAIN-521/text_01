@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
+
 from book.models import BookInfo
 
 # Create your views here.
@@ -156,6 +158,60 @@ def get_session(request):
     username = request.session.get('username')
     content = "{}, {}".format(user_id, username)
     return HttpResponse(content)
+
+
+
+def login(request):
+    if request.method == 'GET':
+        return HttpResponse('get 逻辑')
+    else:
+        return HttpResponse('post 逻辑')
+
+'''
+类视图的定义
+class 类视图名称(View):
+    def get(self,request):
+        return HttpResponse('xxx')
+    def http_method_lower(self,request):
+        return HttpResponse('xxx')
+1. 继承自view
+2. 类视图的方法 采用http方法的小写来区分不同的请求方式
+'''
+
+from django.views import View
+class LoginView(View):
+    def get(self,request):
+        return HttpResponse('get 逻辑')
+
+    def post(self,request):
+        return HttpResponse('post 逻辑')
+
+'''
+我的订单，个人中心页面
+如果用户登陆 可以访问
+如果用户未登录 不应该访问，应该跳转到登陆届面
+定义一个订单 个人中心 类视图
+
+'''
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+#  LoginRequiredMixin 作用判断只有 登陆用户才能访问
+class OrderView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        # 模拟一个标记位
+        # islogin = False
+        # if not islogin:
+        #     return HttpResponse('你没有登陆，跳转到登陆界面~~~~~~~~~~~~')
+        return HttpResponse('GET 我的订单页面，这个页面必须登陆')
+
+    def post(self, request):
+        return HttpResponse('POST 我的订单页面，这个页面必须登陆')
+
+
+
+
+
 
 
 
